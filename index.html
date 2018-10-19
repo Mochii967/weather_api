@@ -1,0 +1,768 @@
+<!--
+
+    This is a basic usage of a weather api
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css" />
+        <title>Weather</title>
+        <meta charset="utf-8">
+        <style>
+            #sunny1-1, #sunny1-2, #sunny1-3 {
+                display: none;
+            }
+            #rain1-1, #rain1-2, #rain1-3 {
+                display: none;
+            }
+            #clouds1-1, #clouds1-2, #clouds1-3 {
+                display: none;
+            }
+            #sunny2-1, #sunny2-2, #sunny2-3 {
+                display: none;
+            }
+            #rain2-1, #rain2-2, #rain2-3 {
+                display: none;
+            }
+            #clouds2-1, #clouds2-2, #clouds2-3 {
+                display: none;
+            }
+            #sunny3-1, #sunny3-2, #sunny3-3 {
+                display: none;
+            }
+            #rain3-1, #rain3-2, #rain3-3 {
+                display: none;
+            }
+            #clouds3-1, #clouds3-2, #clouds3-3 {
+                display: none;
+            }
+            #sunny4-1, #sunny4-2, #sunny4-3 {
+                display: none;
+            }
+            #rain4-1, #rain4-2, #rain4-3 {
+                display: none;
+            }
+            #clouds4-1, #clouds4-2, #clouds4-3 {
+                display: none;
+            }
+            #sunny5-1, #sunny5-2, #sunny5-3 {
+                display: none;
+            }
+            #rain5-1, #rain5-2, #rain5-3 {
+                display: none;
+            }
+            #clouds5-1, #clouds5-2, #clouds5-3 {
+                display: none;
+            }
+            .btn {
+                margin: 20px;
+                display: none;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    </head>
+    <body class="blue">
+        <div class="container">
+            <header class="container">
+                <h1>This is my weather app api</h1>
+            </header>
+            <main class="container">
+                <label for="zip" class="white-text">Please input a zip code:</label>
+                <input id="zip" type="text" name="zip">
+                <button class="btn" onclick="search()" id="searchButton">Search</button>
+                <p id="showcase">
+                    
+                </p>
+                <div id="day1">
+                    <button class="btn" onclick="showDayOne()">Click here to see day one</button>
+                    <div id="dayOne" class="container">
+                        <img id="sunny1-1" src="./weatherIcons/sunny.jpg">
+                        <img id="rain1-1" src="./weatherIcons/rain.jpg">                        
+                        <p id="dayOneMorningTemp">
+
+                        </p>
+                        <img id="clouds1-1" src="./weatherIcons/clouds.jpg">
+                        <img id="sunny1-2" src="./weatherIcons/sunny.jpg">
+                        <img id="rain1-2" src="./weatherIcons/rain.jpg">
+                        <img id="clouds1-2" src="./weatherIcons/clouds.jpg">
+                        <p id="dayOneNoonTemp">
+
+                        </p>
+                        <img id="sunny1-3" src="./weatherIcons/sunny.jpg">
+                        <img id="rain1-3" src="./weatherIcons/rain.jpg">
+                        <img id="clouds1-3" src="./weatherIcons/clouds.jpg">
+                        <p id="dayOneEveningTemp">
+
+                        </p>
+                    </div>
+                </div>
+                <div id="day2">
+                    <button class="btn" onclick=showDayTwo()>Click here to see day two</button>
+                    <div id="dayOne" class="container">
+                        <img id="sunny2-1" src="./weatherIcons/sunny.jpg">                            
+                        <img id="rain2-1" src="./weatherIcons/rain.jpg">
+                        <img id="clouds2-1" src="./weatherIcons/clouds.jpg">
+                        <p id="dayTwoMorningTemp">
+
+                        </p>
+                        <img id="sunny2-2" src="./weatherIcons/sunny.jpg">
+                        <img id="rain2-2" src="./weatherIcons/rain.jpg">
+                        <img id="clouds2-2" src="./weatherIcons/clouds.jpg">
+                        <p id="dayTwoNoonTemp">
+
+                        </p>
+                        <img id="sunny2-3" src="./weatherIcons/sunny.jpg">
+                        <img id="rain2-3" src="./weatherIcons/rain.jpg">
+                        <img id="clouds2-3" src="./weatherIcons/clouds.jpg">
+                        <p id="dayTwoEveningTemp"></p>
+                    </div>
+                </div>
+                <div id="day3">
+                    <button class="btn" onclick=showDayThree()>Click here to see day three</button>
+                    <div id="dayOne" class="container">
+                        <img id="sunny3-1" src="./weatherIcons/sunny.jpg">
+                        <img id="rain3-1" src="./weatherIcons/rain.jpg">
+                        <img id="clouds3-1" src="./weatherIcons/clouds.jpg">
+                        <p id="dayThreeMorningTemp">
+
+                        </p>
+                        <img id="sunny3-2" src="./weatherIcons/sunny.jpg">
+                        <img id="rain3-2" src="./weatherIcons/rain.jpg">
+                        <img id="clouds3-2" src="./weatherIcons/clouds.jpg">
+                        <p id="dayThreeNoonTemp">
+
+                        </p>
+                        <img id="sunny3-3" src="./weatherIcons/sunny.jpg">
+                        <img id="rain3-3" src="./weatherIcons/rain.jpg">
+                        <img id="clouds3-3" src="./weatherIcons/clouds.jpg">
+                        <p id="dayThreeEveningTemp">
+
+                        </p>
+                    </div>
+                </div>
+                <div id="day4">
+                    <button class="btn" onclick=showDayFour()>Click here to see day four</button>
+                    <div id="dayOne" class="container">
+                        <img id="sunny4-1" src="./weatherIcons/sunny.jpg">                            
+                        <img id="rain4-1" src="./weatherIcons/rain.jpg">
+                        <img id="clouds4-1" src="./weatherIcons/clouds.jpg">
+                        <p id="dayFourMorningTemp">
+
+                        </p>
+                        <img id="sunny4-2" src="./weatherIcons/sunny.jpg">
+                        <img id="rain4-2" src="./weatherIcons/rain.jpg">
+                        <img id="clouds4-2" src="./weatherIcons/clouds.jpg">
+                        <p id="dayFourNoonTemp">
+
+                        </p>
+                        <img id="sunny4-3" src="./weatherIcons/sunny.jpg">
+                        <img id="rain4-3" src="./weatherIcons/rain.jpg">
+                        <img id="clouds4-3" src="./weatherIcons/clouds.jpg">
+                        <p id="dayFourEveningTemp">
+
+                        </p>
+                    </div>
+                </div>
+                <div id="day5">
+                    <button class="btn" onclick=showDayFive()>Click here to see day five</button>
+                    <div id="dayOne" class="container">
+                        <img id="sunny5-1" src="./weatherIcons/sunny.jpg">
+                        <img id="rain5-1" src="./weatherIcons/rain.jpg">
+                        <img id="clouds5-1" src="./weatherIcons/clouds.jpg">
+                        <p id="dayFiveMorningTemp">
+
+                        </p>                          
+                        <img id="sunny5-2" src="./weatherIcons/sunny.jpg">
+                        <img id="rain5-2" src="./weatherIcons/rain.jpg">
+                        <img id="clouds5-2" src="./weatherIcons/clouds.jpg">
+                        <p id="dayFiveNoonTemp">
+
+                        </p>
+                        <img id="sunny5-3" src="./weatherIcons/sunny.jpg">
+                        <img id="rain5-3" src="./weatherIcons/rain.jpg">
+                        <img id="clouds5-3" src="./weatherIcons/clouds.jpg">
+                        <p id="dayFiveEveningTemp">
+
+                        </p>
+                    </div>
+                </div>
+            </main>
+            <footer class="container center-align">
+                Copyright Stuff
+            </footer>
+        </div>
+        <script>
+            
+            $("#searchButton").css("display", "block");
+
+            function getIcon(k) {
+                if (k == "Clear") {
+                    return "clear";
+                } else if (k == "Rain") {
+                    return "rain";
+                } else if (k == "Clouds") {
+                    return "clouds";
+                } else {
+                    return "not yet supported"
+                }
+            };
+            
+            var one = 0;
+            var two = 0;
+            var three = 0;
+            var four = 0;
+            var five = 0;
+
+            /*
+                These are the actual brains of the operation where
+                the data is actually being brought in and displayed to the user.
+                I have it set up so that there are three different temperature reading for each day.
+                With each temperature reading I also included a custome image
+                that will change depending on some of the information that the api
+                gives us.
+            */
+
+            function showDayOne() {
+                one++;
+                if (!isEven(one)) {
+                    var zip = $("#zip").val();
+                    $.get("http://api.openweathermap.org/data/2.5/forecast?zip=" + zip + "&APPID=7b2d573c8b4b70d8b6d15a2fdc6c0867", function(data) {
+                        var dayOneMorning = convert(data.list[0].main.temp);
+                        $("#dayOneMorningTemp").append(dayOneMorning + " F");
+                        $("#dayOneMorningTemp").css("display", "block");
+                        var dayOneMorningIcon = getIcon(data.list[0].weather[0].main);
+                        if (dayOneMorningIcon == "clear") {
+                            $("#sunny1-1").css("display", "block");
+                            $("#rain1-1").css("display", "none");
+                            $("#clouds1-1").css("display", "none");
+                        } else if (dayOneMorningIcon == "rain") {
+                            $("#rain1-1").css("display", "block");
+                            $("#sunny1-1").css("display", "none");
+                            $("#clouds1-1").css("display", "none");
+                        } else if (dayOneMorningIcon == "clouds") {
+                            $("#clouds1-1").css("display", "block");
+                            $("#sunny1-1").css("display", "none");
+                            $("#rain1-1").css("display", "none");
+                        } else {
+                            $("#sunny1-1").css("display", "block");
+                            $("#rain1-1").css("display", "none");
+                            $("#clouds1-1").css("display", "none");
+                        }
+
+                        var dayOneNoon = convert(data.list[2].main.temp);
+                        $("#dayOneNoonTemp").append(dayOneNoon + " F");
+                        $("#dayOneNoonTemp").css("display", "block");
+                        var dayOneNoonIcon = getIcon(data.list[2].weather[0].main);
+                        if (dayOneNoonIcon == "clear") {
+                            $("#sunny1-2").css("display", "block");
+                            $("#rain1-2").css("display", "none");
+                            $("#clouds1-2").css("display", "none");
+                        } else if (dayOneNoonIcon == "rain") {
+                            $("#rain1-2").css("display", "block");
+                            $("#sunny1-2").css("display", "none");
+                            $("#clouds1-2").css("display", "none");
+                        } else if (dayOneNoonIcon == "clouds") {
+                            $("#clouds1-2").css("display", "block");
+                            $("#sunny1-2").css("display", "none");
+                            $("#rain1-2").css("display", "none");
+                        } else {
+                            $("#sunny1-2").css("display", "block");
+                            $("#rain1-2").css("display", "none");
+                            $("#clouds1-2").css("display", "none");
+                        }
+                        
+                        var dayOneEveninging = convert(data.list[5].main.temp);
+                        $("#dayOneEveningTemp").append(dayOneEveninging + " F");
+                        $("#dayOneEveningTemp").css("display", "block");
+                        var dayOneEveningIcon = getIcon(data.list[5].weather[0].main);
+                        if (dayOneEveningIcon == "clear") {
+                            $("#sunny1-3").css("display", "block");
+                            $("#rain1-3").css("display", "none");
+                            $("#clouds1-3").css("display", "none");
+                        } else if (dayOneEveningIcon == "rain") {
+                            $("#clouds1-3").css("display", "block");
+                            $("#sunny1-3").css("display", "none");
+                            $("#clouds1-3").css("display", "none");
+                        } else if (dayOneEveningIcon == "clouds") {
+                            $("#clouds1-3").css("display", "block");
+                            $("#sunny1-3").css("display", "none");
+                            $("#rain1-3").css("display", "none");
+                        } else {
+                            $("#sunny1-3").css("display", "block");
+                            $("#rain1-3").css("display", "none");
+                            $("#clouds1-3").css("display", "none");
+                        }
+                });
+                } else {
+                    $("#sunny1-1").css("display", "none");
+                    $("#sunny1-2").css("display", "none");
+                    $("#sunny1-3").css("display", "none");
+                    $("#rain1-1").css("display", "none");
+                    $("#rain1-2").css("display", "none");
+                    $("#rain1-3").css("display", "none");
+                    $("#clouds1-1").css("display", "none");
+                    $("#clouds1-2").css("display", "none");
+                    $("#clouds1-3").css("display", "none");
+                    $("#dayOneMorningTemp").empty();
+                    $("#dayOneNoonTemp").empty();
+                    $("#dayOneEveningTemp").empty();
+                }        
+            }
+            
+            function showDayTwo() {
+                two++;
+                if (!isEven(two)) {
+                    var zip = $("#zip").val();
+                    $.get("http://api.openweathermap.org/data/2.5/forecast?zip=" + zip + "&APPID=7b2d573c8b4b70d8b6d15a2fdc6c0867", function(data) {
+                        var dayTwoMorning = convert(data.list[6].main.temp);
+                        $("#dayTwoMorningTemp").append(dayTwoMorning + " F");
+                        $("#dayTwoMorningTemp").css("display", "block");
+                        var dayTwoMorningIcon = getIcon(data.list[6].weather[0].main);
+                        if (dayTwoMorningIcon == "clear") {
+                            $("#sunny2-1").css("display", "block");
+                            $("#rain2-1").css("display", "none");
+                            $("#clouds2-1").css("display", "none");
+                        } else if (dayTwoMorningIcon == "rain") {
+                            $("#rain2-1").css("display", "block");
+                            $("#sunny2-1").css("display", "none");
+                            $("#clouds2-1").css("display", "none");
+                        } else if (dayTwoMorningIcon == "clouds") {
+                            $("#clouds2-1").css("display", "block");
+                            $("#sunny2-1").css("display", "none");
+                            $("#rain2-1").css("display", "none");
+                        } else {
+                            $("#sunny2-1").css("display", "block");
+                            $("#rain2-1").css("display", "none");
+                            $("#clouds2-1").css("display", "none");
+                        }
+                        
+                        var dayTwoNoon = convert(data.list[10].main.temp);
+                        $("#dayTwoNoonTemp").append(dayTwoNoon + " F");
+                        $("#dayTwoNoonTemp").css("display", "block");
+                        var dayTwoNoonIcon = getIcon(data.list[10].weather[0].main);
+                        if (dayTwoNoonIcon == "clear") {
+                            $("#sunny2-2").css("display", "block");
+                            $("#rain2-2").css("display", "none");
+                            $("#clouds2-2").css("display", "none");
+                        } else if (dayTwoNoonIcon == "rain") {
+                            $("#rain2-2").css("display", "block");
+                            $("#sunny2-2").css("display", "none");
+                            $("#clouds2-2").css("display", "none");
+                        } else if (dayTwoNoonIcon == "clouds") {
+                            $("#clouds2-2").css("display", "block");
+                            $("#sunny2-2").css("display", "none");
+                            $("#rain2-2").css("display", "none");
+                        } else {
+                            $("#sunny2-2").css("display", "block");
+                            $("#rain2-2").css("display", "none");
+                            $("#clouds2-2").css("display", "none");
+                        }
+                        
+                        var dayTwoEvening = convert(data.list[13].main.temp);
+                        $("#dayTwoEveningTemp").append(dayTwoEvening + " F");
+                        $("#dayTwoEveningTemp").css("display", "block");
+                        var dayTwoEveningIcon = getIcon(data.list[13].weather[0].main);
+                        if (dayTwoEveningIcon == "clear") {
+                            $("#sunny2-3").css("display", "block");
+                            $("#rain2-3").css("display", "none");
+                            $("#clouds2-3").css("display", "none");
+                        } else if (dayTwoEveningIcon == "rain") {
+                            $("#rain2-3").css("display", "block");
+                            $("#sunny2-3").css("display", "none");
+                            $("#clouds2-3").css("display", "none");
+                        } else if (dayTwoEveningIcon == "clouds") {
+                            $("#clouds2-3").css("display", "block");
+                            $("#sunny2-3").css("display", "none");
+                            $("#rain2-3").css("display", "none");
+                        } else {
+                            $("#sunny2-3").css("display", "block");
+                            $("#rain2-3").css("display", "none");
+                            $("#clouds2-3").css("display", "none");
+                        }
+                    });
+                } else {
+                    $("#sunny2-1").css("display", "none");
+                    $("#sunny2-2").css("display", "none");
+                    $("#sunny2-3").css("display", "none");
+                    $("#rain2-1").css("display", "none");
+                    $("#rain2-2").css("display", "none");
+                    $("#rain2-3").css("display", "none");
+                    $("#clouds2-1").css("display", "none");
+                    $("#clouds2-2").css("display", "none");
+                    $("#clouds2-3").css("display", "none");
+                    $("#dayTwoMorningTemp").empty();
+                    $("#dayTwoNoonTemp").empty();
+                    $("#dayTwoEveningTemp").empty();
+                    
+                }     
+            }
+
+            function showDayThree() {
+                three++;
+                if (!isEven(three)) {
+                    var zip = $("#zip").val();
+                    $.get("http://api.openweathermap.org/data/2.5/forecast?zip=" + zip + "&APPID=7b2d573c8b4b70d8b6d15a2fdc6c0867", function(data) {
+                        var dayThreeMorning = convert(data.list[14].main.temp);
+                        $("#dayThreeMorningTemp").append(dayThreeMorning + " F");
+                        $("#dayThreeMorningTemp").css("display", "block");
+                        var dayThreeMorningIcon = getIcon(data.list[14].weather[0].main);
+                        if (dayThreeMorningIcon == "clear") {
+                            $("#sunny3-1").css("display", "block");
+                            $("#rain3-1").css("display", "none");
+                            $("#clouds3-1").css("display", "none");
+                        } else if (dayThreeMorningIcon == "rain") {
+                            $("#rain3-1").css("display", "block");
+                            $("#sunny3-1").css("display", "none");
+                            $("#clouds3-1").css("display", "none");
+                        } else if (dayThreeMorningIcon == "clouds") {
+                            $("#clouds3-1").css("display", "block");
+                            $("#sunny3-1").css("display", "none");
+                            $("#rain3-1").css("display", "none");
+                        } else {
+                            $("#sunny3-1").css("display", "block");
+                            $("#rain3-1").css("display", "none");
+                            $("#clouds3-1").css("display", "none");
+                        }
+                        
+                        var dayThreeNoon = convert(data.list[18].main.temp);
+                        $("#dayThreeNoonTemp").append(dayThreeNoon + " F");
+                        $("#dayThreeNoonTemp").css("display", "block");
+                        var dayThreeNoonIcon = getIcon(data.list[18].weather[0].main);
+                        if (dayThreeNoonIcon == "clear") {
+                            $("#sunny3-2").css("display", "block");
+                            $("#rain3-2").css("display", "none");
+                            $("#clouds3-2").css("display", "none");
+                        } else if (dayThreeNoonIcon == "rain") {
+                            $("#rain3-2").css("display", "block");
+                            $("#sunny3-2").css("display", "none");
+                            $("#clouds3-2").css("display", "none");
+                        } else if (dayThreeNoonIcon == "clouds") {
+                            $("#clouds3-2").css("display", "block");
+                            $("#sunny3-2").css("display", "none");
+                            $("#rain3-2").css("display", "none");
+                        } else {
+                            $("#sunny3-2").css("display", "block");
+                            $("#rain3-2").css("display", "none");
+                            $("#clouds3-2").css("display", "none");
+                        }
+                        
+                        var dayThreeEvening = convert(data.list[21].main.temp);
+                        $("#dayThreeEveningTemp").append(dayThreeEvening + " F");
+                        $("#dayThreeEveningTemp").css("display", "block");
+                        var dayThreeEveningIcon = getIcon(data.list[21].weather[0].main);
+                        if (dayThreeEveningIcon == "clear") {
+                            $("#sunny3-3").css("display", "block");
+                            $("#rain3-3").css("display", "none");
+                            $("#clouds3-3").css("display", "none");
+                        } else if (dayThreeEveningIcon == "rain") {
+                            $("#rain3-3").css("display", "block");
+                            $("#sunny3-3").css("display", "none");
+                            $("#clouds3-3").css("display", "none");
+                        } else if (dayThreeEveningIcon == "clouds") {
+                            $("#clouds3-3").css("display", "block");
+                            $("#sunny3-3").css("display", "none");
+                            $("#rain3-3").css("display", "none");
+                        } else {
+                            $("#sunny3-3").css("display", "block");
+                            $("#rain3-3").css("display", "none");
+                            $("#clouds3-3").css("display", "none");
+                        }
+                    });
+                } else {
+                    $("#sunny3-1").css("display", "none");
+                    $("#sunny3-2").css("display", "none");
+                    $("#sunny3-3").css("display", "none");
+                    $("#rain3-1").css("display", "none");
+                    $("#rain3-2").css("display", "none");
+                    $("#rain3-3").css("display", "none");
+                    $("#clouds3-1").css("display", "none");
+                    $("#clouds3-2").css("display", "none");
+                    $("#clouds3-3").css("display", "none");
+                    $("#dayThreeMorningTemp").empty();
+                    $("#dayThreeNoonTemp").empty();
+                    $("#dayThreeEveningTemp").empty();
+                }
+            }
+
+            function showDayFour() {
+                four++;
+                if (!isEven(four)) {
+                    var zip = $("#zip").val();
+                    $.get("http://api.openweathermap.org/data/2.5/forecast?zip=" + zip + "&APPID=7b2d573c8b4b70d8b6d15a2fdc6c0867", function(data) {
+                        var dayFourMorning = convert(data.list[22].main.temp);
+                        $("#dayFourMorningTemp").append(dayFourMorning + " F");
+                        $("#dayFourMorningTemp").css("display", "block");
+                        var dayFourMorningIcon = getIcon(data.list[22].weather[0].main);
+                        if (dayFourMorningIcon == "clear") {
+                            $("#sunny4-1").css("display", "block");
+                            $("#rain4-1").css("display", "none");
+                            $("#clouds4-1").css("display", "none");
+                        } else if (dayFourMorningIcon == "rain") {
+                            $("#rain4-1").css("display", "block");
+                            $("#sunny4-1").css("display", "none");
+                            $("#clouds4-1").css("display", "none");
+                        } else if (dayFourMorningIcon == "clouds") {
+                            $("#clouds4-1").css("display", "block");
+                            $("#sunny4-1").css("display", "none");
+                            $("#rain4-1").css("display", "none");
+                        } else {
+                            $("#sunny4-2").css("display", "block");
+                            $("#rain4-1").css("display", "none");
+                            $("#clouds4-1").css("display", "none");
+                        }
+
+                        var dayFourNoon = convert(data.list[26].main.temp);
+                        $("#dayFourNoonTemp").append(dayFourNoon + " F");
+                        $("#dayFourNoonTemp").css("display", "block");
+                        var dayFourNoonIcon = getIcon(data.list[26].weather[0].main);
+                        if (dayFourNoonIcon == "clear") {
+                            $("#sunny4-2").css("display", "block");
+                            $("#rain4-2").css("display", "none");
+                            $("#clouds4-2").css("display", "none");
+                        } else if (dayFourNoonIcon == "rain") {
+                            $("#rain4-2").css("display", "block");
+                            $("#sunny4-2").css("display", "none");
+                            $("#clouds4-2").css("display", "none");
+                        } else if (dayFourNoonIcon == "clouds") {
+                            $("#clouds4-2").css("display", "block");
+                            $("#sunny4-2").css("display", "none");
+                            $("#rain4-2").css("display", "none");
+                        } else {
+                            $("#sunny4-2").css("display", "block");
+                            $("#rain4-2").css("display", "none");
+                            $("#clouds4-2").css("display", "none");
+                        }
+                        
+                        var dayFourEvening = convert(data.list[29].main.temp);
+                        $("#dayFourEveningTemp").append(dayFourEvening + " F");
+                        $("#dayFourEveningTemp").css("display", "block");
+                        var dayFourEveningIcon = getIcon(data.list[29].weather[0].main);
+                        if (dayFourEveningIcon == "clear") {
+                            $("#sunny4-3").css("display", "block");
+                            $("#rain4-3").css("display", "none");
+                            $("#clouds4-3").css("display", "none");
+                        } else if (dayFourEveningIcon == "rain") {
+                            $("#rain4-3").css("display", "block");
+                            $("#sunny4-3").css("display", "none");
+                            $("#clouds4-3").css("display", "none");
+                        } else if (dayFourEveningIcon == "clouds") {
+                            $("#clouds4-3").css("display", "block");
+                            $("#sunny4-3").css("display", "none");
+                            $("#rain4-3").css("display", "none");
+                        } else {
+                            $("#sunny4-3").css("display", "block");
+                            $("#rain4-3").css("display", "none");
+                            $("#clouds4-3").css("display", "none");
+                        }
+                    });
+                } else {
+                    $("#rain4-1").css("display", "none");
+                    $("#rain4-2").css("display", "none");
+                    $("#rain4-3").css("display", "none");
+                    $("#sunny4-1").css("display", "none");
+                    $("#sunny4-2").css("display", "none");
+                    $("#sunny4-3").css("display", "none");
+                    $("#clouds4-1").css("display", "none");
+                    $("#clouds4-2").css("display", "none");
+                    $("#clouds4-3").css("display", "none");
+                    $("#dayFourMorningTemp").empty();
+                    $("#dayFourNoonTemp").empty();
+                    $("#dayFourEveningTemp").empty();
+                }
+            }
+
+            function showDayFive() {
+                    five++;
+                    if (!isEven(five)) {
+                        var zip = $("#zip").val();
+                        $.get("http://api.openweathermap.org/data/2.5/forecast?zip=" + zip + "&APPID=7b2d573c8b4b70d8b6d15a2fdc6c0867", function(data) {
+                            var dayFiveMorning = convert(data.list[30].main.temp);
+                            $("#dayFiveMorningTemp").append(dayFiveMorning + " F");
+                            $("#dayFiveMorningTemp").css("display", "block");
+                            var dayFiveMorningIcon = getIcon(data.list[30].weather[0].main);
+                            if (dayFiveMorningIcon == "clear") {
+                                $("#sunny5-1").css("display", "block");
+                                $("#rain5-1").css("display", "none");
+                                $("#clouds5-1").css("display", "none");
+                            } else if (dayFiveMorningIcon == "rain") {
+                                $("#rain5-1").css("display", "block");
+                                $("#sunny5-1").css("display", "none");
+                                $("#clouds5-1").css("display", "none");
+                            } else if (dayFiveMorningIcon == "clouds") {
+                                $("#clouds5-1").css("display", "block");
+                                $("#sunny5-1").css("display", "none");
+                                $("#rain5-1").css("display", "none");
+                            } else {
+                                $("#sunny5-1").css("display", "block");
+                                $("#rain5-1").css("display", "none");
+                                $("#clouds5-1").css("display", "none");
+                            }
+                            
+                            var dayFiveNoon = convert(data.list[34].main.temp);
+                            $("#dayFiveNoonTemp").append(dayFiveNoon + " F");
+                            $("#dayFiveNoonTemp").css("display", "block");
+                            var dayFiveNoonIcon = getIcon(data.list[34].weather[0].main);
+                            if (dayFiveNoonIcon == "clear") {
+                                $("#sunny5-2").css("display", "block");
+                                $("#rain5-2").css("display", "none");
+                                $("#clouds5-2").css("display", "none");
+                            } else if (dayFiveNoonIcon == "rain") {
+                                $("#rain5-2").css("display", "block");
+                                $("#sunny5-2").css("display", "none");
+                                $("#clouds5-2").css("display", "none");
+                            } else if (dayFiveNoonIcon == "clouds") {
+                                $("#clouds5-2").css("display", "block");
+                                $("#sunny5-2").css("display", "none");
+                                $("#rain5-2").css("display", "none");
+                            } else {
+                                $("#sunny5-2").css("display", "block");
+                                $("#rain5-2").css("display", "none");
+                                $("#clouds5-2").css("display", "none");
+                            }
+                            
+                            var dayFiveEvening = convert(data.list[36].main.temp);
+                            $("#dayFiveEveningTemp").append(dayFiveEvening + " F");
+                            $("#dayFiveEveningTemp").css("display", "block");
+                            var dayFiveEveningIcon = getIcon(data.list[36].weather[0].main);
+                            if (dayFiveEveningIcon == "clear") {
+                                $("#sunny5-3").css("display", "block");
+                                $("#rain5-3").css("display", "none");
+                                $("#clouds5-3").css("display", "none");
+                            } else if (dayFiveEveningIcon == "rain") {
+                                $("#rain5-3").css("display", "block");
+                                $("#sunny5-3").css("display", "none");
+                                $("#clouds5-3").css("display", "none");
+                            } else if (dayFiveEveningIcon == "clouds") {
+                                $("#clouds5-3").css("display", "block");
+                                $("#sunny5-3").css("display", "none");
+                                $("#rain5-3").css("display", "none");
+                            } else {
+                                $("#sunny5-3").css("display", "block");
+                                $("#rain5-3").css("display", "none");
+                                $("#clouds5-3").css("display", "none");
+                            }
+                    });
+                } else {
+                    $("#clouds5-1").css("display", "none");
+                    $("#clouds5-2").css("display", "none");
+                    $("#clouds5-3").css("display", "none");
+                    $("#rain5-1").css("display", "none");
+                    $("#rain5-2").css("display", "none");
+                    $("#rain5-3").css("display", "none");
+                    $("#sunny5-1").css("display", "none");
+                    $("#sunny5-2").css("display", "none");
+                    $("#sunny5-3").css("display", "none");
+                    $("#dayFiveMorningTemp").empty();
+                    $("#dayFiveNoonTemp").empty();
+                    $("#dayFiveEveningTemp").empty();
+                }
+            }
+            
+            /*
+                This function is to convert from kelvin to farenheit.
+                I needed this function because the api gave the weather data
+                in degrees kelvin.
+            */
+
+            function convert(k) {
+                f = (k - 273.15) * (9/5) + 32;
+                return f.toFixed(2);
+            }
+            
+            /*
+                This function I made simply to ensure that when someone clicked
+                on a button they would be either hiding or showing the three
+                weather forcasts for that day.
+            */
+
+            function isEven(n) {
+                if (n % 2 === 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            
+            /*
+                This search function is really more of a reset function,
+                the way I have the other functions set up they all do the same
+                query to the api just retreving different data points. So 
+                this function just ensure when someone clicks search things reset back to
+                their original order.
+            */
+
+            function search() {
+                var zip = $("#zip").val();
+                $.get("http://api.openweathermap.org/data/2.5/forecast?zip=" + zip + "&APPID=7b2d573c8b4b70d8b6d15a2fdc6c0867", function(data) {
+                    $(".btn").css("display", "block");
+                    one = 2;
+                    two = 2;
+                    three = 2;
+                    four = 2;
+                    five = 2;
+                    $("#clouds5-1").css("display", "none");
+                    $("#clouds5-2").css("display", "none");
+                    $("#clouds5-3").css("display", "none");
+                    $("#rain5-1").css("display", "none");
+                    $("#rain5-2").css("display", "none");
+                    $("#rain5-3").css("display", "none");
+                    $("#sunny5-1").css("display", "none");
+                    $("#sunny5-2").css("display", "none");
+                    $("#sunny5-3").css("display", "none");
+                    $("#dayFiveMorningTemp").empty();
+                    $("#dayFiveNoonTemp").empty();
+                    $("#dayFiveEveningTemp").empty();
+                    $("#rain4-1").css("display", "none");
+                    $("#rain4-2").css("display", "none");
+                    $("#rain4-3").css("display", "none");
+                    $("#sunny4-1").css("display", "none");
+                    $("#sunny4-2").css("display", "none");
+                    $("#sunny4-3").css("display", "none");
+                    $("#clouds4-1").css("display", "none");
+                    $("#clouds4-2").css("display", "none");
+                    $("#clouds4-3").css("display", "none");
+                    $("#dayFourMorningTemp").empty();
+                    $("#dayFourNoonTemp").empty();
+                    $("#dayFourEveningTemp").empty();
+                    $("#sunny3-1").css("display", "none");
+                    $("#sunny3-2").css("display", "none");
+                    $("#sunny3-3").css("display", "none");
+                    $("#rain3-1").css("display", "none");
+                    $("#rain3-2").css("display", "none");
+                    $("#rain3-3").css("display", "none");
+                    $("#clouds3-1").css("display", "none");
+                    $("#clouds3-2").css("display", "none");
+                    $("#clouds3-3").css("display", "none");
+                    $("#dayThreeMorningTemp").empty();
+                    $("#dayThreeNoonTemp").empty();
+                    $("#dayThreeEveningTemp").empty();
+                    $("#sunny2-1").css("display", "none");
+                    $("#sunny2-2").css("display", "none");
+                    $("#sunny2-3").css("display", "none");
+                    $("#rain2-1").css("display", "none");
+                    $("#rain2-2").css("display", "none");
+                    $("#rain2-3").css("display", "none");
+                    $("#clouds2-1").css("display", "none");
+                    $("#clouds2-2").css("display", "none");
+                    $("#clouds2-3").css("display", "none");
+                    $("#dayTwoMorningTemp").empty();
+                    $("#dayTwoNoonTemp").empty();
+                    $("#dayTwoEveningTemp").empty();
+                    $("#sunny1-1").css("display", "none");
+                    $("#sunny1-2").css("display", "none");
+                    $("#sunny1-3").css("display", "none");
+                    $("#rain1-1").css("display", "none");
+                    $("#rain1-2").css("display", "none");
+                    $("#rain1-3").css("display", "none");
+                    $("#clouds1-1").css("display", "none");
+                    $("#clouds1-2").css("display", "none");
+                    $("#clouds1-3").css("display", "none");
+                    $("#dayOneMorningTemp").empty();
+                    $("#dayOneNoonTemp").empty();
+                    $("#dayOneEveningTemp").empty();
+                });    
+            }
+        </script>
+    </body>
+</html>
